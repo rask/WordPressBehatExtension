@@ -83,6 +83,10 @@ class WordPressContextInitializer implements ContextInitializer
 
     protected function installMuPlugins()
     {
+        if ($this->wordpressParams['install_muplugins'] !== true) {
+            return;
+        }
+
         $finder = new Finder();
         $finder->files()->in(__DIR__.'/mu-plugins')->depth('== 0');
 
