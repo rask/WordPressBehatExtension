@@ -1,6 +1,6 @@
 <?php
 
-namespace StephenHarris\WordPressBehatExtension\Context;
+namespace rask\WordPressBehatExtension\Context;
 
 use Behat\Behat\Context\ClosuredContextInterface;
 use Behat\Behat\Context\TranslatedContextInterface;
@@ -10,7 +10,7 @@ use Behat\Gherkin\Node\TableNode;
 
 use Behat\MinkExtension\Context\RawMinkContext;
 
-use \StephenHarris\WordPressBehatExtension\Context\Page\Login;
+use \rask\WordPressBehatExtension\Context\Page\Login;
 
 /**
  * Steps relating to the log-in page.

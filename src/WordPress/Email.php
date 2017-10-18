@@ -1,22 +1,22 @@
 <?php
-namespace StephenHarris\WordPressBehatExtension\WordPress;
+namespace rask\WordPressBehatExtension\WordPress;
 
 /**
  * An e-mail instance represents a sent e-mail
  *
- * @package StephenHarris\WordPressBehatExtension\WordPress
+ * @package rask\WordPressBehatExtension\WordPress
  */
 class Email
 {
 
     private $recipient;
-    
+
     private $subject;
-    
+
     private $body;
 
     private $timestamp;
-    
+
     public function __construct($recipient, $subject = '', $body = '', $timestamp = null)
     {
         $this->recipient = $recipient;
@@ -24,12 +24,12 @@ class Email
         $this->body      = $body;
         $this->timestamp = is_null($timestamp) ? time() : $timestamp;
     }
-    
+
     public function getRecipient()
     {
         return $this->recipient;
     }
-    
+
     public function getSubject()
     {
         return $this->subject;
@@ -39,7 +39,7 @@ class Email
     {
         return $this->body;
     }
-    
+
     public function getTimestamp()
     {
         return $this->timestamp;

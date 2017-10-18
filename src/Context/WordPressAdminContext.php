@@ -1,12 +1,12 @@
 <?php
 
-namespace StephenHarris\WordPressBehatExtension\Context;
+namespace rask\WordPressBehatExtension\Context;
 
 use Behat\Behat\Context\Context;
 use Behat\MinkExtension\Context\RawMinkContext;
 use Behat\Gherkin\Node\TableNode;
 
-use \StephenHarris\WordPressBehatExtension\Context\Page\AdminPage;
+use \rask\WordPressBehatExtension\Context\Page\AdminPage;
 
 class WordPressAdminContext extends RawMinkContext implements Context
 {
@@ -23,7 +23,7 @@ class WordPressAdminContext extends RawMinkContext implements Context
     {
         $this->adminPage->clickLinkInHeader($link);
     }
-    
+
     /**
      * @Then I should be on the :admin_page page
      */

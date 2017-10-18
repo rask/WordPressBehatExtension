@@ -4,7 +4,7 @@ This is a [Behat 3.0](http://behat.org/en/latest/) Extension for WordPress plugi
 
 ## Why?
 
-Simply, to make end-user testing of WordPress, plug-ins and themes easier. 
+Simply, to make end-user testing of WordPress, plug-ins and themes easier.
 
 The aim of this project is to firstly provide a collection of context classes that allow
 for easy testing of WordPress' core functionality. Secondly, it aims to make creating your
@@ -35,19 +35,19 @@ This repository started off as a fork of:
         }
     }
     ```
-    
+
     WordPressBehatExtension will automatically install Behat, Mink and the Goutte driver.
-    
-    You don't *have* to install WordPress via composer. But you shall need a path to a WordPress install below. 
+
+    You don't *have* to install WordPress via composer. But you shall need a path to a WordPress install below.
     Additionally you don't *have* to use the Selenium2 driver, but this is a common driver for scenerios which
     require JavaScript.
-   
+
     Install the dependencies:
-    
+
     ```bash
     $ composer update
     ```
-    
+
 
 2. Add the following Behat configuration file below. You will need:
 
@@ -63,11 +63,11 @@ This repository started off as a fork of:
         default:
           contexts:
             - FeatureContext
-            - \StephenHarris\WordPressBehatExtension\Context\WordPressContext
-            - \StephenHarris\WordPressBehatExtension\Context\Plugins\WordPressPluginContext
+            - \rask\WordPressBehatExtension\Context\WordPressContext
+            - \rask\WordPressBehatExtension\Context\Plugins\WordPressPluginContext
             # and any other contexts you need, please see the documentation
       extensions:
-        StephenHarris\WordPressBehatExtension:
+        rask\WordPressBehatExtension:
           path: '%paths.base%/vendor/wordpress'
           connection:
             db: 'wordpress_test'
@@ -80,11 +80,11 @@ This repository started off as a fork of:
           goutte: ~
           selenium2: ~
     ```
-    
-    *Note the `StephenHarris\WordPressBehatExtension\Context\WordPressContext` context included. This will cause WordPress to be 
+
+    *Note the `rask\WordPressBehatExtension\Context\WordPressContext` context included. This will cause WordPress to be
     loaded, and all its functions available in (all) your context classes.*. You can also include [other contexts](Contexts.md).
-    
-    
+
+
 3. Initialize behat test suites
 
     ```bash
@@ -118,13 +118,13 @@ make all WordPress functions available in (all) your context classes.
             Given I am on the homepage
             When I follow "Just my article"
             Then I should see "Just my article"
-            And I should see "The content of my article"    
+            And I should see "The content of my article"
         ```
 
 5. Run the tests
 
 
- > In our example, since we using PHP's built-in web sever, this will need to be started so that  Behat can access our site. 
+ > In our example, since we using PHP's built-in web sever, this will need to be started so that  Behat can access our site.
 
  > ```bash
     $  php -S localhost:8000 -t vendor/wordpress -d disable_functions=mail
@@ -140,12 +140,12 @@ WordPressBehatExtension is open source and released under MIT license. See [LICE
 
 ## Health Warning
 
-This **is not to be used on a live site**. Your database **will** be cleared of all data. 
+This **is not to be used on a live site**. Your database **will** be cleared of all data.
 
 Currently this extension also over-rides your `wp-config.php` but this implementation may change in the future.
 
 The extension installs three `mu-plugins` into your install (which it assumes is at `{site-path}/wp-content/mu-plugins`). These plug-ins do the following:
- 
+
  - `wp-mail.php` - over-rides `wp_mail()` function to store the e-mails locally
  - `wp-install.php` - over-rides `wp_install_defaults()` to prevent any default content being created, with the exception of the 'Uncategorised' category.
  - `move-admin-bar-to-back.php` - a workaround for [#1](https://github.com/stephenharris/WordPressBehatExtension/issues/1) which prevent elements from being hidden from Selenium behind the admin menu bar.

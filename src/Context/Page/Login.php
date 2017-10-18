@@ -1,13 +1,13 @@
 <?php
 
-namespace StephenHarris\WordPressBehatExtension\Context\Page;
+namespace rask\WordPressBehatExtension\Context\Page;
 
 use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
 
 class Login extends Page
 {
-    use \StephenHarris\WordPressBehatExtension\Context\Util\Spin;
-    use \StephenHarris\WordPressBehatExtension\Context\Users\WordPressUserTrait;
+    use \rask\WordPressBehatExtension\Context\Util\Spin;
+    use \rask\WordPressBehatExtension\Context\Users\WordPressUserTrait;
 
     /**
      * @var string $path
@@ -22,7 +22,7 @@ class Login extends Page
         $this->validatePassword($user, $password);
 
         $currentPage = $this;
-        
+
         // Wait 1/4 second -- seems to fix https://github.com/stephenharris/WordPressBehatExtension/issues/10
         usleep(250000);
 

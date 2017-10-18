@@ -1,6 +1,6 @@
 <?php
 
-namespace StephenHarris\WordPressBehatExtension\Context\Page;
+namespace rask\WordPressBehatExtension\Context\Page;
 
 class EditPostPage extends AdminPage
 {

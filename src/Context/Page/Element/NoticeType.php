@@ -1,6 +1,6 @@
 <?php
 
-namespace StephenHarris\WordPressBehatExtension\Context\Page\Element;
+namespace rask\WordPressBehatExtension\Context\Page\Element;
 
 use MyCLabs\Enum\Enum;
 

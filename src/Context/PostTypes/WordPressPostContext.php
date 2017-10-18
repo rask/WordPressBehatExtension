@@ -1,5 +1,5 @@
 <?php
-namespace StephenHarris\WordPressBehatExtension\Context\PostTypes;
+namespace rask\WordPressBehatExtension\Context\PostTypes;
 
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
@@ -7,11 +7,11 @@ use Behat\Gherkin\Node\TableNode;
 /**
  * Defines steps related to posts and other post types
  *
- * @package StephenHarris\WordPressBehatExtension\Context
+ * @package rask\WordPressBehatExtension\Context
  */
 class WordPressPostContext implements Context
 {
-    use \StephenHarris\WordPressBehatExtension\Context\PostTypes\WordPressPostTrait;
+    use \rask\WordPressBehatExtension\Context\PostTypes\WordPressPostTrait;
 
     /**
      * Add these posts to this wordpress installation
@@ -65,8 +65,8 @@ class WordPressPostContext implements Context
 
         $this->assignPostTypeTerms($post, $taxonomy, $terms);
     }
-    
-    
+
+
     /**
      * Example: Then the event "My event title" should have event-category terms "family,sports"
      * @Then /^the ([a-z0-9_\-]*) "([^"]*)" should have ([a-z0-9_\-]*) terms "([^"]*)"$/
@@ -76,7 +76,7 @@ class WordPressPostContext implements Context
         $post = $this->getPostByName($title, $postType);
         $this->assertPostTypeTerms($post, $taxonomy, $terms);
     }
-    
+
     /**
      * Example: Then the post "My post title" should have status "published"
      * @Then /^the ([a-z0-9_\-]*) "([^"]*)" should have status "([^"]*)"$/

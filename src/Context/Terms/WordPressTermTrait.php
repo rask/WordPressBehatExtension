@@ -1,12 +1,12 @@
 <?php
-namespace StephenHarris\WordPressBehatExtension\Context\Terms;
+namespace rask\WordPressBehatExtension\Context\Terms;
 
 /**
  * A 'helper' class primarily used by WordPressTermsContext which holds the step definitions.
  *
  * This class has been seperated out from the step definitions so that it can be re-used for other contexts
  *
- * @package StephenHarris\WordPressBehatExtension\Context
+ * @package rask\WordPressBehatExtension\Context
  */
 trait WordPressTermTrait
 {

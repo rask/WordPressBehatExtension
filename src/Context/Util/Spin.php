@@ -1,6 +1,6 @@
 <?php
 
-namespace StephenHarris\WordPressBehatExtension\Context\Util;
+namespace rask\WordPressBehatExtension\Context\Util;
 
 trait Spin
 {

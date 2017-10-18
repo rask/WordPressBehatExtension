@@ -1,6 +1,6 @@
 <?php
 
-namespace StephenHarris\WordPressBehatExtension\ServiceContainer;
+namespace rask\WordPressBehatExtension\ServiceContainer;
 
 use Behat\Behat\Context\ServiceContainer\ContextExtension;
 use Behat\Testwork\ServiceContainer\Extension as ExtensionInterface;
@@ -16,7 +16,7 @@ use Symfony\Component\DependencyInjection\Definition;
 /**
  * Class WordPressBehat
  *
- * @package StephenHarris\WordPressBehat\ServiceContainer
+ * @package rask\WordPressBehat\ServiceContainer
  */
 class WordPressBehatExtension implements ExtensionInterface
 {
@@ -44,9 +44,9 @@ class WordPressBehatExtension implements ExtensionInterface
     {
         //TODO This over-rides the config file, what if the end user wanted to add their own namespaces?
         //How can we place nice?
-        $pages = array( 'StephenHarris\WordPressBehatExtension\Context\Page' );
+        $pages = array( 'rask\WordPressBehatExtension\Context\Page' );
         $container->setParameter('sensio_labs.page_object_extension.namespaces.page', $pages);
-        $elements = array( 'StephenHarris\WordPressBehatExtension\Context\Page\Element' );
+        $elements = array( 'rask\WordPressBehatExtension\Context\Page\Element' );
         $container->setParameter('sensio_labs.page_object_extension.namespaces.element', $elements);
     }
 
@@ -116,7 +116,7 @@ class WordPressBehatExtension implements ExtensionInterface
     private function loadContextInitializer(ContainerBuilder $container)
     {
         $definition = new Definition(
-            'StephenHarris\WordPressBehatExtension\Context\Initializer\WordPressContextInitializer',
+            'rask\WordPressBehatExtension\Context\Initializer\WordPressContextInitializer',
             array(
                 '%wordpress.parameters%',
             )

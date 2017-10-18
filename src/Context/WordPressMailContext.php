@@ -1,7 +1,7 @@
 <?php
-namespace StephenHarris\WordPressBehatExtension\Context;
+namespace rask\WordPressBehatExtension\Context;
 
-use StephenHarris\WordPressBehatExtension\WordPress\InboxFactory;
+use rask\WordPressBehatExtension\WordPress\InboxFactory;
 
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
@@ -60,7 +60,7 @@ class WordPressMailContext extends RawMinkContext implements
             $body,
             $matches
         );
-        
+
         $links = $matches[0];
         $ordinals = array(
             'first'   => 1,
@@ -96,7 +96,7 @@ class WordPressMailContext extends RawMinkContext implements
 
         $this->getSession()->visit($links[$i]);
     }
-    
+
     /**
      * Returns fixed step argument (with \\" replaced back to ")
      *

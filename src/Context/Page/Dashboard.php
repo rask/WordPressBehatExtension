@@ -1,5 +1,5 @@
 <?php
-namespace StephenHarris\WordPressBehatExtension\Context\Page;
+namespace rask\WordPressBehatExtension\Context\Page;
 
 class Dashboard extends AdminPage
 {

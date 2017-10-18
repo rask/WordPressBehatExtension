@@ -5,28 +5,43 @@ This project is currently at an alpha stage. It will continue on the `0.*.*` bra
 
 ### Enhancements:
 
-- `Context\Util\Spin` trait now displays underlying exception message when it times out.
-- Use "Pretty Print" json for email files to make them more human-friendly.
-- Add `host` field for the Behat extension configuration, allowing usage of a MySQL server that runs on something else than `localhost`.
-- Add config `overwrite_config` (accepts boolean value) to set whether the Behat extension should overwrite the `wp-config.php` file of the installation where Behat is being run. This is good for setups where either this is not useful or where it could be even harmful.
-- Add `install_muplugins` (boolean) config to determine whether to install test environment mu-plugins. Defaults to true.
+None as of now.
 
 ### Breaking changes:
 
+None as of now.
+
+### Bugfixes:
+
+None as of now.
+
+## [0.5.0] - 2017-10-18
+
+### Breaking changes:
+
+- Clarify rask's fork, package is now `rask/wordpress-behat-extension` (please see `stephenharris/wordpress-behat-extension` for more info)
 - Fix bug in `Context\Util\Spin::fillField()` not calling parent method correctly. This trait can not be used in a `Context` but can be used in page/element objects
 - `WordPress` context no longer extends `MinkContext`
 - Mandatory `site_url` setting added, URL should point to the WordPress install
+
+### Enhancements:
+
+- `Context\Util\Spin` trait now displays underlying exception message when it times out.
+- Use "Pretty Print" json for email files to make them more human-friendly.
+- Config options:
+    - `host` for database
+    - `install_muplugins` to determine whether to install mu-plugins or not
+    - `overwrite_config` to determine whether to overwrite `wp-config.php` when running tests
 
 ### Bugfixes:
 
 - Fixes incorrect error message password used for logging in is incorrect [#11](https://github.com/stephenharris/WordPressBehatExtension/issues/11)
 
-
 ## [0.4.0] - 2016-10-21
 
 ### Breaking changes:
 
-- Moved `StephenHarris\WordPressBehatExtension\Element\WPTableElement` to `StephenHarris\WordPressBehatExtension\Element\WPTable\TableElement`
+- Moved `rask\WordPressBehatExtension\Element\WPTableElement` to `StephenHarris\WordPressBehatExtension\Element\WPTable\TableElement`
 - Refactored `StephenHarris\WordPressBehatExtension\Element\WPTable\TableElement` to add row and cell element decorations
 - Extracted `WordPressPostContext` from `WordPressContext` and extracted helper methods into `WordPressPostRawContext` trait
 - Extracted `WordPressTermContext` from `WordPressContext` and extracted helper methods into `WordPressTermTrait` trait

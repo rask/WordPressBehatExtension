@@ -1,5 +1,5 @@
 <?php
-namespace StephenHarris\WordPressBehatExtension\Context\Terms;
+namespace rask\WordPressBehatExtension\Context\Terms;
 
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
@@ -7,11 +7,11 @@ use Behat\Gherkin\Node\TableNode;
 /**
  * Defines steps related to terms
  *
- * @package StephenHarris\WordPressBehatExtension\Context
+ * @package rask\WordPressBehatExtension\Context
  */
 class WordPressTermContext implements Context
 {
-    use \StephenHarris\WordPressBehatExtension\Context\Terms\WordPressTermTrait;
+    use \rask\WordPressBehatExtension\Context\Terms\WordPressTermTrait;
 
     /**
      * Add these terms to this WordPress installation

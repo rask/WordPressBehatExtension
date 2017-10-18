@@ -3,7 +3,7 @@
 This extension provides the following contexts.
 
 Each must be manually specified in your `behat.yml` if you wish to use them, and the name must be
-fully qualified. E.g. `\StephenHarris\WordPressBehatExtension\Context\WordPressContext`.
+fully qualified. E.g. `\rask\WordPressBehatExtension\Context\WordPressContext`.
 
 
 ## Core context

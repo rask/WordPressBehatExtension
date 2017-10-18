@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class stripHtmlTest extends PHPUnit_Framework_TestCase
 {
@@ -8,7 +8,7 @@ class stripHtmlTest extends PHPUnit_Framework_TestCase
 	 */
 	function testStripHTML( $html, $expected ) {
 
-		$mock = $this->getMockForTrait('\StephenHarris\WordPressBehatExtension\StripHtml');
+		$mock = $this->getMockForTrait('\rask\WordPressBehatExtension\StripHtml');
 
 		$actual = $mock->stripTagsAndContent($html);
 		$this->assertEquals( $expected, $actual );

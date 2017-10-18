@@ -1,5 +1,5 @@
 <?php
-namespace StephenHarris\WordPressBehatExtension\Context\Plugins;
+namespace rask\WordPressBehatExtension\Context\Plugins;
 
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;

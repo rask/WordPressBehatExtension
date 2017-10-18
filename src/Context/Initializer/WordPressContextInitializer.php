@@ -1,17 +1,17 @@
 <?php
 
-namespace StephenHarris\WordPressBehatExtension\Context\Initializer;
+namespace rask\WordPressBehatExtension\Context\Initializer;
 
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\Initializer\ContextInitializer;
 
-use StephenHarris\WordPressBehatExtension\Context\WordPressInboxFactoryAwareContext;
-use \StephenHarris\WordPressBehatExtension\WordPress\InboxFactory;
+use rask\WordPressBehatExtension\Context\WordPressInboxFactoryAwareContext;
+use \rask\WordPressBehatExtension\WordPress\InboxFactory;
 
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Filesystem\Filesystem;
 
-use StephenHarris\WordPressBehatExtension\Context\WordPressContext;
+use rask\WordPressBehatExtension\Context\WordPressContext;
 
 class WordPressContextInitializer implements ContextInitializer
 {

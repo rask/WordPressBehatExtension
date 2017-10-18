@@ -1,5 +1,5 @@
 <?php
-namespace StephenHarris\WordPressBehatExtension\Context\Options;
+namespace rask\WordPressBehatExtension\Context\Options;
 
 use Behat\Behat\Context\Context;
 

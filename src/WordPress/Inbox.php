@@ -1,5 +1,5 @@
 <?php
-namespace StephenHarris\WordPressBehatExtension\WordPress;
+namespace rask\WordPressBehatExtension\WordPress;
 
 /**
  * An inbox is a collection of e-mails sent to a given e-mail
@@ -9,19 +9,19 @@ namespace StephenHarris\WordPressBehatExtension\WordPress;
  *
  * You should not instantiate an Inbox directly, but use InboxFactory
  *
- * @package StephenHarris\WordPressBehatExtension\WordPress
+ * @package rask\WordPressBehatExtension\WordPress
  */
 class Inbox
 {
-    
+
     /**
      * The e-mail address associated with this inbox
      * @var string
      */
     private $emailAddress;
-    
+
     /**
-     * An array of StephenHarris\WordPressBehatExtension\WordPress\Email objects
+     * An array of rask\WordPressBehatExtension\WordPress\Email objects
      * @var array
      */
     private $emails;
@@ -41,7 +41,7 @@ class Inbox
         $this->dir = $dir;
         $this->refresh();
     }
-    
+
     /**
      * Returns an array of e-mails in this inbox
      */
@@ -49,18 +49,18 @@ class Inbox
     {
         return $this->emails;
     }
-    
+
     /**
      * Return the latest e-mail recieved with a given subject.
      *
      * If no subject is present then the latest e-mail recieved is returned.
      *
      * @param string|null $subject
-     * @return \StephenHarris\WordPressBehatExtension\WordPress\Email
+     * @return \rask\WordPressBehatExtension\WordPress\Email
      */
     public function getLatestEmail($subject = null)
     {
-        
+
         if (empty($this->emails)) {
             throw new \Exception(sprintf("Inbox for %s is empty", $this->emailAddress));
         }
@@ -72,10 +72,10 @@ class Inbox
                 return $email;
             }
         }
-                
+
         throw new \Exception(sprintf("No emails for %s found with subject '%s'", $this->emailAddress, $subject));
     }
-    
+
     /**
      * Create an e-mail instance from a file
      *
@@ -94,7 +94,7 @@ class Inbox
 
         return new Email($fileContents['to'], $fileContents['subject'], $fileContents['message'], $timestamp);
     }
-        
+
     /**
      * Delete all e-mails in this inbox
      */
@@ -106,7 +106,7 @@ class Inbox
         }
         $this->emails = array();
     }
-    
+
     public function refresh()
     {
         $filePattern = $this->getInboxDirectory() . '*' . $this->emailAddress . '*';
@@ -119,7 +119,7 @@ class Inbox
             //sort by timestamp, descending
             return $email2->getTimestamp() - $email1->getTimestamp();
         });
-        
+
         return $this;
     }
 

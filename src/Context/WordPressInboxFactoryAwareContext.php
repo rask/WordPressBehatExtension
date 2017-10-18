@@ -1,6 +1,6 @@
 <?php
 
-namespace StephenHarris\WordPressBehatExtension\Context;
+namespace rask\WordPressBehatExtension\Context;
 
 /**
  * Interfaces for contexts which want to receive an inbox factory
@@ -9,5 +9,5 @@ namespace StephenHarris\WordPressBehatExtension\Context;
  */
 interface WordPressInboxFactoryAwareContext
 {
-    public function setInboxFactory(\StephenHarris\WordPressBehatExtension\WordPress\InboxFactory $factory);
+    public function setInboxFactory(\rask\WordPressBehatExtension\WordPress\InboxFactory $factory);
 }

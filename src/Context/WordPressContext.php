@@ -1,8 +1,8 @@
 <?php
-namespace StephenHarris\WordPressBehatExtension\Context;
+namespace rask\WordPressBehatExtension\Context;
 
 use Behat\Gherkin\Node\TableNode;
-use StephenHarris\WordPressBehatExtension\WordPress\InboxFactory;
+use rask\WordPressBehatExtension\WordPress\InboxFactory;
 use Behat\Behat\Context\Context;
 
 class WordPressContext implements Context, WordPressInboxFactoryAwareContext

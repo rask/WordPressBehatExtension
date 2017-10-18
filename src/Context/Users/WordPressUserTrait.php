@@ -1,12 +1,12 @@
 <?php
-namespace StephenHarris\WordPressBehatExtension\Context\Users;
+namespace rask\WordPressBehatExtension\Context\Users;
 
 /**
  * A 'helper' class primarily used by WordPressUserContext which holds the step definitions.
  *
  * This class has been seperated out from the step definitions so that it can be re-used for other contexts.
  *
- * @package StephenHarris\WordPressBehatExtension\Context
+ * @package rask\WordPressBehatExtension\Context
  */
 trait WordPressUserTrait
 {
