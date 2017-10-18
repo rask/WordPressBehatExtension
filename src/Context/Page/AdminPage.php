@@ -1,12 +1,12 @@
 <?php
 
-namespace StephenHarris\WordPressBehatExtension\Context\Page;
+namespace rask\WordPressBehatExtension\Context\Page;
 
 use SensioLabs\Behat\PageObjectExtension\PageObject\Page;
 use SensioLabs\Behat\PageObjectExtension\PageObject\Factory;
 
-use StephenHarris\WordPressBehatExtension\Context\Page\Element\Notice;
-use StephenHarris\WordPressBehatExtension\Context\Page\Element\NoticeType;
+use rask\WordPressBehatExtension\Context\Page\Element\Notice;
+use rask\WordPressBehatExtension\Context\Page\Element\NoticeType;
 
 use Behat\Mink\Element\NodeElement;
 use Behat\Mink\Session;

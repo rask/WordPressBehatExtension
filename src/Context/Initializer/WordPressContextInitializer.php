@@ -1,32 +1,29 @@
 <?php
 
-namespace StephenHarris\WordPressBehatExtension\Context\Initializer;
+namespace rask\WordPressBehatExtension\Context\Initializer;
 
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\Initializer\ContextInitializer;
 
-use StephenHarris\WordPressBehatExtension\Context\WordPressInboxFactoryAwareContext;
-use \StephenHarris\WordPressBehatExtension\WordPress\InboxFactory;
+use rask\WordPressBehatExtension\Context\WordPressInboxFactoryAwareContext;
+use \rask\WordPressBehatExtension\WordPress\InboxFactory;
 
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Filesystem\Filesystem;
 
-use StephenHarris\WordPressBehatExtension\Context\WordPressContext;
+use rask\WordPressBehatExtension\Context\WordPressContext;
 
 class WordPressContextInitializer implements ContextInitializer
 {
     private $wordpressParams;
-    private $minkParams;
     /**
      * inject the wordpress extension parameters and the mink parameters
      *
      * @param array  $wordpressParams
-     * @param array  $minkParams
      */
-    public function __construct($wordpressParams, $minkParams)
+    public function __construct($wordpressParams)
     {
         $this->wordpressParams = $wordpressParams;
-        $this->minkParams = $minkParams;
     }
 
     /**
@@ -56,8 +53,8 @@ class WordPressContextInitializer implements ContextInitializer
      */
     private function prepareEnvironment()
     {
-        $urlParts = parse_url($this->minkParams['base_url']);
-        $_SERVER['HTTP_HOST'] = $urlParts['host'] . (isset($urlParts['port']) ? ':' . $urlParts['port'] : '');
+        $urlParts = parse_url($this->wordpressParams['site_url']);
+        $_SERVER['HTTP_HOST']       = $urlParts['host'] . (isset($urlParts['port']) ? ':' . $urlParts['port'] : '');
 
         if ($this->wordpressParams['mail']['directory'] && !is_dir($this->wordpressParams['mail']['directory'])) {
             mkdir($this->wordpressParams['mail']['directory'], 0777, true);
@@ -76,16 +73,22 @@ class WordPressContextInitializer implements ContextInitializer
 
         $this->installMuPlugins();
 
-        $mu_plugin = $this->getMuPluginDir();
-        $str = file_get_contents($mu_plugin . DIRECTORY_SEPARATOR . 'wp-mail.php');
-        $str = str_replace('WORDPRESS_FAKE_MAIL_DIR', "'" . $this->wordpressParams['mail']['directory'] . "'", $str);
-        file_put_contents($mu_plugin . DIRECTORY_SEPARATOR . 'wp-mail.php', $str);
+        if ($this->wordpressParams['install_muplugins'] === true) {
+            $mu_plugin = $this->getMuPluginDir();
+            $str = file_get_contents($mu_plugin . DIRECTORY_SEPARATOR . 'wp-mail.php');
+            $str = str_replace('WORDPRESS_FAKE_MAIL_DIR', "'" . $this->wordpressParams['mail']['directory'] . "'", $str);
+            file_put_contents($mu_plugin . DIRECTORY_SEPARATOR . 'wp-mail.php', $str);
+        }
 
         $this->loadWordPress();
     }
 
     protected function installMuPlugins()
     {
+        if ($this->wordpressParams['install_muplugins'] !== true) {
+            return;
+        }
+
         $finder = new Finder();
         $finder->files()->in(__DIR__.'/mu-plugins')->depth('== 0');
 
@@ -138,16 +141,22 @@ class WordPressContextInitializer implements ContextInitializer
      */
     public function overwriteConfig()
     {
+        if ($this->wordpressParams['overwrite_config'] !== true) {
+            return;
+        }
+
         $finder = new Finder();
         $fs = new Filesystem();
         $finder->files()->in($this->wordpressParams['path'])->depth('== 0')->name('wp-config-sample.php');
         foreach ($finder as $file) {
             $configContent =
                 str_replace(array(
+                    "'DB_HOST', 'localhost'",
                     "'DB_NAME', 'database_name_here'",
                     "'DB_USER', 'username_here'",
                     "'DB_PASSWORD', 'password_here'"
                 ), array(
+                    sprintf("'DB_HOST', '%s'", $this->wordpressParams['connection']['host']),
                     sprintf("'DB_NAME', '%s'", $this->wordpressParams['connection']['db']),
                     sprintf("'DB_USER', '%s'", $this->wordpressParams['connection']['username']),
                     sprintf("'DB_PASSWORD', '%s'", $this->wordpressParams['connection']['password']),
@@ -164,8 +173,9 @@ class WordPressContextInitializer implements ContextInitializer
         if ($this->wordpressParams['flush_database']) {
             $connection = $this->wordpressParams['connection'];
             $database   = $connection['db'];
+            $host       = $connection['host'];
             $mysqli = new \Mysqli(
-                'localhost',
+                $host,
                 $connection['username'],
                 $connection['password'],
                 $database

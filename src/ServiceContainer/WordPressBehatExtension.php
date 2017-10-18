@@ -1,6 +1,6 @@
 <?php
 
-namespace StephenHarris\WordPressBehatExtension\ServiceContainer;
+namespace rask\WordPressBehatExtension\ServiceContainer;
 
 use Behat\Behat\Context\ServiceContainer\ContextExtension;
 use Behat\Testwork\ServiceContainer\Extension as ExtensionInterface;
@@ -16,7 +16,7 @@ use Symfony\Component\DependencyInjection\Definition;
 /**
  * Class WordPressBehat
  *
- * @package StephenHarris\WordPressBehat\ServiceContainer
+ * @package rask\WordPressBehat\ServiceContainer
  */
 class WordPressBehatExtension implements ExtensionInterface
 {
@@ -44,9 +44,9 @@ class WordPressBehatExtension implements ExtensionInterface
     {
         //TODO This over-rides the config file, what if the end user wanted to add their own namespaces?
         //How can we place nice?
-        $pages = array( 'StephenHarris\WordPressBehatExtension\Context\Page' );
+        $pages = array( 'rask\WordPressBehatExtension\Context\Page' );
         $container->setParameter('sensio_labs.page_object_extension.namespaces.page', $pages);
-        $elements = array( 'StephenHarris\WordPressBehatExtension\Context\Page\Element' );
+        $elements = array( 'rask\WordPressBehatExtension\Context\Page\Element' );
         $container->setParameter('sensio_labs.page_object_extension.namespaces.element', $elements);
     }
 
@@ -61,21 +61,23 @@ class WordPressBehatExtension implements ExtensionInterface
                 ->scalarNode('path')
                     ->defaultValue(__DIR__ . 'vendor')
                 ->end()
-                ->arrayNode('symlink')
-                    ->children()
-                        ->scalarNode('from')
-                            ->defaultValue('.')
-                        ->end()
-                        ->scalarNode('to')
-                            ->isRequired()
-                        ->end()
-                    ->end()
+                ->scalarNode('site_url')
+                    ->isRequired()
+                ->end()
+                ->scalarNode('overwrite_config')
+                    ->defaultTrue()
+                ->end()
+                ->scalarNode('install_muplugins')
+                    ->defaultTrue()
                 ->end()
                 ->booleanNode('flush_database')
                     ->defaultValue(true)
                 ->end()
                 ->arrayNode('connection')
                     ->children()
+                        ->scalarNode('host')
+                            ->defaultValue('localhost')
+                        ->end()
                         ->scalarNode('db')
                             ->defaultValue('wordpress')
                         ->end()
@@ -91,9 +93,6 @@ class WordPressBehatExtension implements ExtensionInterface
                     ->children()
                         ->scalarNode('directory')
                             ->defaultValue(getenv('WORDPRESS_FAKE_MAIL_DIR'))
-                        ->end()
-                        ->scalarNode('divider')
-                            ->defaultValue('%%===================%%')
                         ->end()
                     ->end()
                 ->end()
@@ -117,10 +116,9 @@ class WordPressBehatExtension implements ExtensionInterface
     private function loadContextInitializer(ContainerBuilder $container)
     {
         $definition = new Definition(
-            'StephenHarris\WordPressBehatExtension\Context\Initializer\WordPressContextInitializer',
+            'rask\WordPressBehatExtension\Context\Initializer\WordPressContextInitializer',
             array(
                 '%wordpress.parameters%',
-                '%mink.parameters%',
             )
         );
         $definition->addTag(ContextExtension::INITIALIZER_TAG, array('priority' => 0));

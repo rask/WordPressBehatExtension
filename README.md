@@ -1,21 +1,22 @@
 ## WordPress Extension for Behat 3
 
-This is a Behat 3.0 Extension for WordPress plugin and theme development. 
+This is a Behat 3.0 Extension for WordPress plugin and theme development.
 
-The Extension allows you to use WordPress functions in your context class if you include `StephenHarris\WordPressBehatExtension\Context\WordPressContext` (or create and include a child class of it, i.e. make your `FeatureContext` ).
+The Extension allows you to use WordPress functions in your context class if you include `rask\WordPressBehatExtension\Context\WordPressContext` (or create and include a child class of it, i.e. make your `FeatureContext` ).
 
 It also provides [other contexts](docs/Contexts.md).
 
-**Version:** 0.4.0 . *This project follows [SemVer](http://semver.org/)*.
+**Version:** 0.5.0 . *This project follows [SemVer](http://semver.org/)*.
 
 
 ## History
 
 This repository started off as a fork of:
 
- - <https://github.com/JohnBillion/WordPressBehatExtension>
+ - <https://github.com/StephenHarris/WordPressBehatExtension>
+ - itself a fork of <https://github.com/JohnBillion/WordPressBehatExtension>
  - itself a fork of <https://github.com/tmf/WordPressExtension>
- - itself a fork of <https://github.com/wdalmut/WordPressExtension>
+ - itself a fork of <https://github.com/wdalmut/WordPressExtension>.
 
 
 ## Installation
@@ -56,13 +57,17 @@ This repository started off as a fork of:
         default:
           contexts:
             - FeatureContext
-            - \StephenHarris\WordPressBehatExtension\Context\WordPressContext
-            - \StephenHarris\WordPressBehatExtension\Context\Plugins\WordPressPluginContext
+            - \rask\WordPressBehatExtension\Context\WordPressContext
+            - \rask\WordPressBehatExtension\Context\Plugins\WordPressPluginContext
             # and any other contexts you need, please see the documentation
       extensions:
-        StephenHarris\WordPressBehatExtension:
+        rask\WordPressBehatExtension:
           path: '%paths.base%/vendor/wordpress'
+          flush_database: false
+          install_muplugins: false
+          overwrite_config: false
           connection:
+            host: 'localhost'
             db: 'wordpress_test'
             username: 'root'
             password: ''
@@ -73,10 +78,10 @@ This repository started off as a fork of:
           goutte: ~
           selenium2: ~
     ```
-    
-    *Note the `StephenHarris\WordPressBehatExtension\Context\WordPressContext` context included. This will cause WordPress to be loaded, and all its functions available in your context classes.*. You can also include [other contexts](docs/Contexts.md).
-    
-    
+
+    *Note the `rask\WordPressBehatExtension\Context\WordPressContext` context included. This will cause WordPress to be loaded, and all its functions available in your context classes.*. You can also include [other contexts](docs/Contexts.md).
+
+
 3. Install the vendors and initialize behat test suites
 
     ```bash
@@ -93,33 +98,33 @@ This repository started off as a fork of:
         In order to manage plugins
         As an admin
         I need to enable and disable plugins
-    
+
         Background:
             Given I have a vanilla wordpress installation
                 | name          | email                   | username | password |
                 | BDD WordPress | your@email.com          | admin    | test     |
             And I am logged in as "admin" with password "test"
-    
+
         Scenario: Enable the dolly plugin
             Given there are plugins
                 | plugin    | status  |
                 | hello.php | enabled |
             When I go to "/wp-admin/"
             Then I should see a "#dolly" element
-    
+
         Scenario: Disable the dolly plugin
             Given there are plugins
                 | plugin    | status   |
                 | hello.php | disabled |
             When I go to "/wp-admin/"
             Then I should not see a "#dolly" element
-    
+
     ```
 
 5. Run the tests
 
 
- > In our example, since we using PHP's built-in web sever, this will need to be started so that  Behat can access our site. 
+ > In our example, since we using PHP's built-in web sever, this will need to be started so that  Behat can access our site.
 
  > ```bash
     php -S localhost:8000 -t vendor/wordpress -d disable_functions=mail
@@ -135,7 +140,7 @@ Please see the [Docs](docs/Contents.md).
 
 ## Aim
 
-The aim of this project is to provide a collection of context classes that allow for easy testing of WordPress' core functionality. Those contexts can then be built upon to test your site/plugin/theme-specific functionality. 
+The aim of this project is to provide a collection of context classes that allow for easy testing of WordPress' core functionality. Those contexts can then be built upon to test your site/plugin/theme-specific functionality.
 
 ## License
 
@@ -143,12 +148,12 @@ WordPressBehatExtension is open source and released under MIT license. See [LICE
 
 ## Health Warning
 
-This is not to be used on a live site. Your database **will** be cleared of all data. 
+This is not to be used on a live site. Your database **will** be cleared of all data unless you use a separate database.
 
 Currently this extension also over-rides your `wp-config.php` but this implementation may change in the future.
 
 The extension installs three `mu-plugins` into your install (which it assumes is at `{site-path}/wp-content/mu-plugins`). These plug-ins do the following:
- 
+
  - `wp-mail.php` - over-rides `wp_mail()` function to store the e-mails locally
  - `wp-install.php` - over-rides `wp_install_defaults()` to prevent any default content being created, with the exception of the 'Uncategorised' category.
  - `move-admin-bar-to-back.php` - a workaround for [#1](https://github.com/stephenharris/WordPressBehatExtension/issues/1) which prevent elements from being hidden from Selenium behind the admin menu bar.

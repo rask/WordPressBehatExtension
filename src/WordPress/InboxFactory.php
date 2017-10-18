@@ -1,10 +1,10 @@
 <?php
-namespace StephenHarris\WordPressBehatExtension\WordPress;
+namespace rask\WordPressBehatExtension\WordPress;
 
 /**
  * Used to instantiates an inbox for a given e-mail address
  *
- * @package StephenHarris\WordPressBehatExtension\WordPress
+ * @package rask\WordPressBehatExtension\WordPress
  */
 class InboxFactory
 {

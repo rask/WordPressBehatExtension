@@ -1,13 +1,13 @@
 <?php
 
-namespace StephenHarris\WordPressBehatExtension\Context\Page\Element;
+namespace rask\WordPressBehatExtension\Context\Page\Element;
 
 use Behat\Mink\Element\NodeElement;
 use Behat\Mink\Session;
 
 class WPTableRow extends NodeElement
 {
-    use \StephenHarris\WordPressBehatExtension\StripHtml;
+    use \rask\WordPressBehatExtension\StripHtml;
 
     private $cells = null;
 

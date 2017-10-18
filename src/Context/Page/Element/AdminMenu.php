@@ -1,13 +1,13 @@
 <?php
 
-namespace StephenHarris\WordPressBehatExtension\Context\Page\Element;
+namespace rask\WordPressBehatExtension\Context\Page\Element;
 
 use SensioLabs\Behat\PageObjectExtension\PageObject\Element;
 use Behat\Mink\Exception\UnsupportedDriverActionException;
 
 class AdminMenu extends Element
 {
-    use \StephenHarris\WordPressBehatExtension\StripHtml;
+    use \rask\WordPressBehatExtension\StripHtml;
     /**
      * @var array|string $selector
      */

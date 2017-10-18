@@ -1,13 +1,13 @@
 <?php
 
-namespace StephenHarris\WordPressBehatExtension\Context;
+namespace rask\WordPressBehatExtension\Context;
 
 use Behat\Behat\Context\Context;
-use \StephenHarris\WordPressBehatExtension\Context\Page\EditPostPage;
+use \rask\WordPressBehatExtension\Context\Page\EditPostPage;
 
 class WordPressEditPostContext implements Context
 {
-    use \StephenHarris\WordPressBehatExtension\Context\PostTypes\WordPressPostTrait;
+    use \rask\WordPressBehatExtension\Context\PostTypes\WordPressPostTrait;
 
     public function __construct(EditPostPage $editPostPage)
     {

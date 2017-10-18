@@ -1,6 +1,6 @@
 <?php
 
-namespace StephenHarris\WordPressBehatExtension\Context\Page\Element;
+namespace rask\WordPressBehatExtension\Context\Page\Element;
 
 use Behat\Mink\Element\NodeElement;
 use Behat\Mink\Session;
@@ -10,7 +10,7 @@ use Behat\Mink\Session;
  */
 class Notice extends NodeElement
 {
-    use \StephenHarris\WordPressBehatExtension\StripHtml;
+    use \rask\WordPressBehatExtension\StripHtml;
 
     const NOTICE_CLASS = 'notice';
 

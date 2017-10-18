@@ -1,5 +1,5 @@
 <?php
-namespace StephenHarris\WordPressBehatExtension\Context\Page\Element;
+namespace rask\WordPressBehatExtension\Context\Page\Element;
 
 /**
  * The TableRowElement 'decorates' NodeElement. It adds context the <tr> element such as getting
@@ -8,7 +8,7 @@ namespace StephenHarris\WordPressBehatExtension\Context\Page\Element;
  * Please note that this Decorator implementation is lazy and cannot be stacked. See link below for details.
  *
  * @link http://jrgns.net/decorator-pattern-implemented-properly-in-php/
- * @package StephenHarris\WordPressExtension\Element
+ * @package rask\WordPressExtension\Element
  */
 abstract class WPTableVisitor
 {

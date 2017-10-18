@@ -35,20 +35,20 @@ default:
     default:
       contexts:
         - FeatureContext:
-        - \StephenHarris\WordPressBehatExtension\Context\WordPressContext
-        - \StephenHarris\WordPressBehatExtension\Context\WordPressLoginContext
-        - \StephenHarris\WordPressBehatExtension\Context\PostTypes\WordPressPostContext
-        - \StephenHarris\WordPressBehatExtension\Context\Terms\WordPressTermContext
-        - \StephenHarris\WordPressBehatExtension\Context\Users\WordPressUserContext
-        - \StephenHarris\WordPressBehatExtension\Context\Options\WordPressOptionContext
-        - \StephenHarris\WordPressBehatExtension\Context\Plugins\WordPressPluginContext
-        - \StephenHarris\WordPressBehatExtension\Context\WordPressAdminContext
-        - \StephenHarris\WordPressBehatExtension\Context\WordPressEditPostContext
-        - \StephenHarris\WordPressBehatExtension\Context\WordPressPostListContext
-        - \StephenHarris\WordPressBehatExtension\Context\WordPressMailContext
+        - \rask\WordPressBehatExtension\Context\WordPressContext
+        - \rask\WordPressBehatExtension\Context\WordPressLoginContext
+        - \rask\WordPressBehatExtension\Context\PostTypes\WordPressPostContext
+        - \rask\WordPressBehatExtension\Context\Terms\WordPressTermContext
+        - \rask\WordPressBehatExtension\Context\Users\WordPressUserContext
+        - \rask\WordPressBehatExtension\Context\Options\WordPressOptionContext
+        - \rask\WordPressBehatExtension\Context\Plugins\WordPressPluginContext
+        - \rask\WordPressBehatExtension\Context\WordPressAdminContext
+        - \rask\WordPressBehatExtension\Context\WordPressEditPostContext
+        - \rask\WordPressBehatExtension\Context\WordPressPostListContext
+        - \rask\WordPressBehatExtension\Context\WordPressMailContext
 
   extensions:
-        StephenHarris\WordPressBehatExtension:
+        rask\WordPressBehatExtension:
           path: '/tmp/wordpress'
           connection:
             db: 'wordpress'
@@ -74,7 +74,7 @@ default:
 1. Create a directory `ci` in the root of your project and add an (executable) file `ci/install-wordpress.sh`
 
    This downloads and installs WordPress, and creates a `wp-config.php` file. It leverages `wp-cli` to do this, but this can be done without `wp-cli`.
-   
+
    ```
    #!/bin/bash
 
@@ -117,8 +117,8 @@ default:
    ```
 
 1. Create an (executable) file `ci/init-behat.sh`
-  
-   This is only required for tests that require Javascript to execute. It 
+
+   This is only required for tests that require Javascript to execute. It
    downloads and starts selenium.
 
    ```

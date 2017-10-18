@@ -1,11 +1,47 @@
 # Change Log
-This project is currently at an alpha stage. It will continue on the `0.*.*` branch until the first stable release.  
+This project is currently at an alpha stage. It will continue on the `0.*.*` branch until the first stable release.
+
+## develop
+
+### Enhancements:
+
+None as of now.
+
+### Breaking changes:
+
+None as of now.
+
+### Bugfixes:
+
+None as of now.
+
+## [0.5.0] - 2017-10-18
+
+### Breaking changes:
+
+- Clarify rask's fork, package is now `rask/wordpress-behat-extension` (please see `stephenharris/wordpress-behat-extension` for more info)
+- Fix bug in `Context\Util\Spin::fillField()` not calling parent method correctly. This trait can not be used in a `Context` but can be used in page/element objects
+- `WordPress` context no longer extends `MinkContext`
+- Mandatory `site_url` setting added, URL should point to the WordPress install
+
+### Enhancements:
+
+- `Context\Util\Spin` trait now displays underlying exception message when it times out.
+- Use "Pretty Print" json for email files to make them more human-friendly.
+- Config options:
+    - `host` for database
+    - `install_muplugins` to determine whether to install mu-plugins or not
+    - `overwrite_config` to determine whether to overwrite `wp-config.php` when running tests
+
+### Bugfixes:
+
+- Fixes incorrect error message password used for logging in is incorrect [#11](https://github.com/stephenharris/WordPressBehatExtension/issues/11)
 
 ## [0.4.0] - 2016-10-21
 
 ### Breaking changes:
 
-- Moved `StephenHarris\WordPressBehatExtension\Element\WPTableElement` to `StephenHarris\WordPressBehatExtension\Element\WPTable\TableElement`
+- Moved `rask\WordPressBehatExtension\Element\WPTableElement` to `StephenHarris\WordPressBehatExtension\Element\WPTable\TableElement`
 - Refactored `StephenHarris\WordPressBehatExtension\Element\WPTable\TableElement` to add row and cell element decorations
 - Extracted `WordPressPostContext` from `WordPressContext` and extracted helper methods into `WordPressPostRawContext` trait
 - Extracted `WordPressTermContext` from `WordPressContext` and extracted helper methods into `WordPressTermTrait` trait
@@ -27,7 +63,7 @@ This project is currently at an alpha stage. It will continue on the `0.*.*` bra
 - Added tests to run on Travis
 - Added mu-plugin to prevent dummy content (except 'Uncategorised' category) from being created when installing WordPress.
 - Improved feedback for log-in errors (i.e. explicitly checks username and password).
-- `WordPressAdminContext::iGoToMenuItem()` throws an exception if then admin menu could not be found 
+- `WordPressAdminContext::iGoToMenuItem()` throws an exception if then admin menu could not be found
 - Added `When I am on the log-in page` and `Then I should be on the log-in page` step definitions
 - Made error message for failed table comparison more explicit: show first cell values which do match
 - Added `Then the admin menu should appear as` step which compares the admin menu (top-level) against a given list of strings / regular expressions.
@@ -68,12 +104,12 @@ This project is currently at an alpha stage. It will continue on the `0.*.*` bra
 
 ### Added
 - This changelog
-- Add Email, Inbox and InboxFactory classes to improve handling of checking e-mails sent by `wp_mail()`. 
+- Add Email, Inbox and InboxFactory classes to improve handling of checking e-mails sent by `wp_mail()`.
 - Adds unit test
 
 ## 0.1.0 - 2016-06-03
 ### Added
-- Additional contexts 
+- Additional contexts
 
 
 [0.3.0]: https://github.com/stephenharris/WordPressBehatExtension/compare/0.2.0...0.3.0

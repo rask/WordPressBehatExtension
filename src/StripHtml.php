@@ -1,5 +1,5 @@
 <?php
-namespace StephenHarris\WordPressBehatExtension;
+namespace rask\WordPressBehatExtension;
 
 /**
  * A trait which extracts 'top level' text from HTML.

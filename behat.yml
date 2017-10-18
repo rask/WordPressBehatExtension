@@ -5,21 +5,22 @@ default:
       contexts:
         - FeatureContext:
             screenshot_dir: '%paths.base%/failed-scenarios/'
-        - \StephenHarris\WordPressBehatExtension\Context\WordPressContext
-        - \StephenHarris\WordPressBehatExtension\Context\WordPressLoginContext
-        - \StephenHarris\WordPressBehatExtension\Context\PostTypes\WordPressPostContext
-        - \StephenHarris\WordPressBehatExtension\Context\Terms\WordPressTermContext
-        - \StephenHarris\WordPressBehatExtension\Context\Users\WordPressUserContext
-        - \StephenHarris\WordPressBehatExtension\Context\Options\WordPressOptionContext
-        - \StephenHarris\WordPressBehatExtension\Context\Plugins\WordPressPluginContext
-        - \StephenHarris\WordPressBehatExtension\Context\WordPressAdminContext
-        - \StephenHarris\WordPressBehatExtension\Context\WordPressEditPostContext
-        - \StephenHarris\WordPressBehatExtension\Context\WordPressPostListContext
-        - \StephenHarris\WordPressBehatExtension\Context\WordPressMailContext
+        - \rask\WordPressBehatExtension\Context\WordPressContext
+        - \rask\WordPressBehatExtension\Context\WordPressLoginContext
+        - \rask\WordPressBehatExtension\Context\PostTypes\WordPressPostContext
+        - \rask\WordPressBehatExtension\Context\Terms\WordPressTermContext
+        - \rask\WordPressBehatExtension\Context\Users\WordPressUserContext
+        - \rask\WordPressBehatExtension\Context\Options\WordPressOptionContext
+        - \rask\WordPressBehatExtension\Context\Plugins\WordPressPluginContext
+        - \rask\WordPressBehatExtension\Context\WordPressAdminContext
+        - \rask\WordPressBehatExtension\Context\WordPressEditPostContext
+        - \rask\WordPressBehatExtension\Context\WordPressPostListContext
+        - \rask\WordPressBehatExtension\Context\WordPressMailContext
 
   extensions:
-        StephenHarris\WordPressBehatExtension:
-          path: '/tmp/wordpress'
+        rask\WordPressBehatExtension:
+          path: 'www'
+          site_url: 'http://wordpress.dev'
           connection:
             db: 'wordpress'
             username: 'root'
@@ -27,7 +28,7 @@ default:
           mail:
             directory: '/tmp/mail'
         Behat\MinkExtension:
-            base_url: 'http://localhost:8000'
+            base_url: 'http://wordpress.dev'
             files_path: '%paths.base%/features/files/'
             goutte:
               guzzle_parameters:

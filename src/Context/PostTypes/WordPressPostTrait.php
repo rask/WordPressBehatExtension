@@ -1,5 +1,5 @@
 <?php
-namespace StephenHarris\WordPressBehatExtension\Context\PostTypes;
+namespace rask\WordPressBehatExtension\Context\PostTypes;
 
 /**
  * A 'helper' class primarily used by WordPressPostContext which holds the step definitions.
@@ -7,7 +7,7 @@ namespace StephenHarris\WordPressBehatExtension\Context\PostTypes;
  * This class has been seperated out from the step definitions so that it can be re-used for other contexts (i.e. third
  * party post type contexts).
  *
- * @package StephenHarris\WordPressBehatExtension\Context
+ * @package rask\WordPressBehatExtension\Context
  */
 trait WordPressPostTrait
 {

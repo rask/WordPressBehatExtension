@@ -1,12 +1,12 @@
 <?php
-namespace StephenHarris\WordPressBehatExtension\Context\Users;
+namespace rask\WordPressBehatExtension\Context\Users;
 
 /**
  * A 'helper' class primarily used by WordPressUserContext which holds the step definitions.
  *
  * This class has been seperated out from the step definitions so that it can be re-used for other contexts.
  *
- * @package StephenHarris\WordPressBehatExtension\Context
+ * @package rask\WordPressBehatExtension\Context
  */
 trait WordPressUserTrait
 {
@@ -67,7 +67,7 @@ trait WordPressUserTrait
     public function validatePassword(\WP_User $WPUser, $password)
     {
         if (! wp_check_password($password, $WPUser->data->user_pass, $WPUser->ID)) {
-            throw new \Exception(sprintf('Password for user %s incorrect', $password));
+            throw new \Exception(sprintf('Password for user %s incorrect', $WPUser->user_login));
         }
     }
 }

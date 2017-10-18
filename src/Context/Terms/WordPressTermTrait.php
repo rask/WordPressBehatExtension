@@ -1,12 +1,12 @@
 <?php
-namespace StephenHarris\WordPressBehatExtension\Context\Terms;
+namespace rask\WordPressBehatExtension\Context\Terms;
 
 /**
  * A 'helper' class primarily used by WordPressTermsContext which holds the step definitions.
  *
  * This class has been seperated out from the step definitions so that it can be re-used for other contexts
  *
- * @package StephenHarris\WordPressBehatExtension\Context
+ * @package rask\WordPressBehatExtension\Context
  */
 trait WordPressTermTrait
 {
@@ -19,7 +19,7 @@ trait WordPressTermTrait
         $term_ids = wp_insert_term($termData['name'], $taxonomy, $termData);
         if (is_wp_error($term_ids)) {
             throw new \InvalidArgumentException(
-                sprintf("Invalid taxonomy term information schema: %s", $return->get_error_message())
+                sprintf("Invalid taxonomy term information schema: %s", $term_ids->get_error_message())
             );
         }
         return $term_ids;

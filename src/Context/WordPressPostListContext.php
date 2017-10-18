@@ -1,6 +1,6 @@
 <?php
 
-namespace StephenHarris\WordPressBehatExtension\Context;
+namespace rask\WordPressBehatExtension\Context;
 
 use Behat\Behat\Context\ClosuredContextInterface;
 use Behat\Behat\Context\TranslatedContextInterface;
@@ -10,7 +10,7 @@ use Behat\Gherkin\Node\TableNode;
 
 use Behat\MinkExtension\Context\RawMinkContext;
 
-use \StephenHarris\WordPressBehatExtension\Context\Page\Element\WPTable;
+use \rask\WordPressBehatExtension\Context\Page\Element\WPTable;
 
 /**
  * WordPress Post List context
@@ -45,13 +45,12 @@ class WordPressPostListContext extends RawMinkContext implements Context, Snippe
 
     /**
      *
-     * Example
-     *    Then I should see the following actions
-     *      | actions    |
-     *      | Edit       |
-     *      | Quick Edit |
-     *      | Trash      |
-     *      | View       |
+     * Example: Then I should see the following actions
+     *            | actions    |
+     *            | Edit       |
+     *            | Quick Edit |
+     *            | Trash      |
+     *            | View       |
      *
      * @Then I should see the following row actions
      */
@@ -102,7 +101,7 @@ class WordPressPostListContext extends RawMinkContext implements Context, Snippe
             ));
         }
     }
-    
+
     /**
      * @Then the post list table looks like
      */
@@ -186,7 +185,7 @@ class WordPressPostListContext extends RawMinkContext implements Context, Snippe
     {
         $WPTable = $this->getTable();
         $row = $WPTable->getRowWithColumnValue($arg1, 'Title');
-        
+
         $row->mouseOver();
         $quick_edit_link = $row->find('css', '.editinline');
         $quick_edit_link->click();
