@@ -73,10 +73,12 @@ class WordPressContextInitializer implements ContextInitializer
 
         $this->installMuPlugins();
 
-        $mu_plugin = $this->getMuPluginDir();
-        $str = file_get_contents($mu_plugin . DIRECTORY_SEPARATOR . 'wp-mail.php');
-        $str = str_replace('WORDPRESS_FAKE_MAIL_DIR', "'" . $this->wordpressParams['mail']['directory'] . "'", $str);
-        file_put_contents($mu_plugin . DIRECTORY_SEPARATOR . 'wp-mail.php', $str);
+        if ($this->wordpressParams['install_muplugins'] === true) {
+            $mu_plugin = $this->getMuPluginDir();
+            $str = file_get_contents($mu_plugin . DIRECTORY_SEPARATOR . 'wp-mail.php');
+            $str = str_replace('WORDPRESS_FAKE_MAIL_DIR', "'" . $this->wordpressParams['mail']['directory'] . "'", $str);
+            file_put_contents($mu_plugin . DIRECTORY_SEPARATOR . 'wp-mail.php', $str);
+        }
 
         $this->loadWordPress();
     }
